@@ -16,6 +16,7 @@
 		$findtype = "SELECT * FROM type WHERE type_name = '$name'";
 		$findResult = mysqli_query($conn, $findtype);
 		//create new type 
+		// example admin
 		if(mysqli_num_rows($findResult)==0)
         {
 			$inserttype = "INSERT INTO type(type_name) VALUES ('$name')";

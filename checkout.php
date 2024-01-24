@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	require_once "./functions/database_functions.php";
-	$title = "Checking out";
+	$title = "Checking out - Updated";
 	require "./template/header.php";	
 	if(!isset($_SESSION['user']))
 	{
@@ -14,22 +14,22 @@
 ?>
 	<table class="table">
 		<tr>
-			<th>Item</th>
+			<th>Product</th>
 			<th>Price</th>
 	    	<th>Quantity</th>
 	    	<th>Total</th>
 	    </tr>
 	    	<?php
-			    foreach($_SESSION['cart'] as $serial => $qty)
+			    foreach($_SESSION['cart'] as $item_serial => $item_qty)
 				{
 					$conn = db_connect();
-					$med = mysqli_fetch_assoc(getmedByserial($conn, $serial));
+					$item = mysqli_fetch_assoc(getmedByserial($conn, $item_serial));
 			?>
 		<tr>
-			<td><?php echo $med['med_name'] . " by " . $med['med_manufacturer']; ?></td>
-			<td><?php echo "Rs " . $med['med_price']; ?></td>
-			<td><?php echo $qty; ?></td>
-			<td><?php echo "Rs" . $qty * $med['med_price']; ?></td>
+			<td><?php echo $item['med_name'] . " by " . $item['med_manufacturer']; ?></td>
+			<td><?php echo "Rs " . $item['med_price']; ?></td>
+			<td><?php echo $item_qty; ?></td>
+			<td><?php echo "Rs" . $item_qty * $item['med_price']; ?></td>
 		</tr>
 		<?php } ?>
 		<tr>
